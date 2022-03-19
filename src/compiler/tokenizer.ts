@@ -13,16 +13,17 @@ export function tokenizer(input: string): Token[] {
     }
 
     if (char === '(') {
-      tokens.push({
-        type: 'OpenParenToken'
-      });
+      tokens.push({ type: 'OpenParenToken' });
       cursorPos++; continue;
     }
 
     if (char === ')') {
-      tokens.push({
-        type: 'CloseParenToken'
-      });
+      tokens.push({ type: 'CloseParenToken' });
+      cursorPos++; continue;
+    }
+
+    if (char === '+') {
+      tokens.push({ type: 'PlusToken' });
       cursorPos++; continue;
     }
 
@@ -33,10 +34,7 @@ export function tokenizer(input: string): Token[] {
         value += char;
         char = input[++cursorPos]!;
       }
-      tokens.push({
-        type: 'NumericLiteral',
-        value: +value,
-      });
+      tokens.push({ type: 'NumericLiteral', value: +value });
       continue;
     }
 
@@ -47,10 +45,7 @@ export function tokenizer(input: string): Token[] {
         value += char;
         char = input[++cursorPos]!;
       }
-      tokens.push({
-        type: 'Identifier',
-        value,
-      });
+      tokens.push({ type: 'Identifier', value });
       continue;
     }
 
