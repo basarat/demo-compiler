@@ -21,6 +21,13 @@ Array [
     "value": 3,
   },
   Object {
+    "type": "MinusToken",
+  },
+  Object {
+    "type": "NumericLiteral",
+    "value": 4,
+  },
+  Object {
     "type": "CloseParenToken",
   },
 ]

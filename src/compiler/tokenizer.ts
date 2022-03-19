@@ -27,6 +27,11 @@ export function tokenizer(input: string): Token[] {
       cursorPos++; continue;
     }
 
+    if (char === '-') {
+      tokens.push({ type: 'MinusToken' });
+      cursorPos++; continue;
+    }
+
     const NUMBERS = /[0-9]/;
     if (NUMBERS.test(char)) {
       let value = '';
