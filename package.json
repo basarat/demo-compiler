@@ -1,0 +1,22 @@
+{
+  "name": "demo-compiler",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "scripts": {
+    "build:jest": "jest",
+    "build:tsc": "tsc -p .",
+    "dev:jest": "npm run build:jest -- --watch",
+    "dev:tsc": "npm run build:tsc -- --watch",
+    "build": "npm run build:jest && npm run build:tsc",
+    "start": "node lib/index.js"
+  },
+  "keywords": [],
+  "author": "bas@basarat.com",
+  "license": "MIT",
+  "dependencies": {
+    "@types/jest": "27.4.1",
+    "jest": "27.5.1",
+    "ts-jest": "27.1.3",
+    "typescript": "4.6.2"
+  }
+}
