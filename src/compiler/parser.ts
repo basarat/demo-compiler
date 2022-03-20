@@ -8,15 +8,17 @@ export function parser(tokens: Token[]): Program {
   function parse(): Node {
     const token = tokens[current]!;
 
+    if (token.type === 'Identifier') {
+      return parseCallExpression(token);
+    }
+
     if (token.type === 'NumericLiteral') {
       const next = tokens[current + 1];
       if (next?.type === 'PlusToken' || next?.type === 'MinusToken') {
         return parseBinaryExpression(token, next);
+      } else {
+        return parseNumericLiteral(token);
       }
-      return parseNumericLiteral(token);
-    }
-    if (token.type === 'Identifier') {
-      return parseCallExpression(token);
     }
 
     throw new SyntaxError(`Unknown Token: ${token.type}`);
