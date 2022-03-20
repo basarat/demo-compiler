@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it should pass 1`] = `
+Object {
+  "body": Array [
+    Object {
+      "argument": Object {
+        "left": Object {
+          "type": "NumericLiteral",
+          "value": 1,
+        },
+        "operator": Object {
+          "type": "PlusToken",
+        },
+        "right": Object {
+          "left": Object {
+            "type": "NumericLiteral",
+            "value": 3,
+          },
+          "operator": Object {
+            "type": "MinusToken",
+          },
+          "right": Object {
+            "type": "NumericLiteral",
+            "value": 4,
+          },
+          "type": "BinaryExpression",
+        },
+        "type": "BinaryExpression",
+      },
+      "identifier": Object {
+        "type": "Identifier",
+        "value": "log",
+      },
+      "type": "CallExpression",
+    },
+  ],
+}
+`;

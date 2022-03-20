@@ -28,14 +28,14 @@ export function parser(tokens: Token[]): Program {
     const identifier = token;
     current++;
 
-    if (tokens[current]?.type === 'OpenParenToken') {
+    if (tokens[current]?.type !== 'OpenParenToken') {
       throw new SyntaxError('Indentifier must be followed by (');
     }
     current++;
 
     const argument: Node = parse();
 
-    if (tokens[current]?.type === 'CloseParenToken') {
+    if (tokens[current]?.type !== 'CloseParenToken') {
       throw new SyntaxError('Call expressions terminate with )');
     }
     current++;
