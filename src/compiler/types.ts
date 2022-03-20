@@ -15,7 +15,7 @@ export type Token =
 
 export type NumericLiteralNode = { type: 'NumericLiteral', value: number }
 export type CallExpressionNode = { type: 'CallExpression', identifier: IdentifierToken, argument: Node }
-export type BinaryExpressionNode = { type: 'BinaryExpression', left: Node, right: Node, operatorToken: PlusToken | MinusToken }
+export type BinaryExpressionNode = { type: 'BinaryExpression', left: Node, right: Node, operator: PlusToken | MinusToken }
 
 export type Node =
   | NumericLiteralNode

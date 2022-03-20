@@ -1,4 +1,4 @@
-import { Token, Node, Program, NumericLiteralToken, IdentifierToken, NumericLiteralNode, CallExpressionNode } from './types';
+import { Token, Node, Program, NumericLiteralToken, IdentifierToken, NumericLiteralNode, CallExpressionNode, BinaryExpressionNode, MinusToken, PlusToken } from './types';
 
 export function parser(tokens: Token[]): Program {
   const program: Program = { body: [] };
@@ -9,6 +9,10 @@ export function parser(tokens: Token[]): Program {
     const token = tokens[current]!;
 
     if (token.type === 'NumericLiteral') {
+      const next = tokens[current + 1];
+      if (next?.type === 'PlusToken' || next?.type === 'MinusToken') {
+        return parseBinaryExpression(token, next);
+      }
       return parseNumericLiteral(token);
     }
     if (token.type === 'Identifier') {
@@ -19,6 +23,7 @@ export function parser(tokens: Token[]): Program {
   }
 
   function parseCallExpression(token: IdentifierToken): CallExpressionNode {
+    const identifier = token;
     current++;
 
     if (tokens[current]?.type === 'OpenParenToken') {
@@ -27,18 +32,28 @@ export function parser(tokens: Token[]): Program {
     current++;
 
     const argument: Node = parse();
-    
+
     if (tokens[current]?.type === 'CloseParenToken') {
       throw new SyntaxError('Call expressions terminate with )');
     }
     current++;
 
-    return { type: 'CallExpression', identifier: token, argument }
+    return { type: 'CallExpression', identifier, argument }
   }
 
   function parseNumericLiteral(token: NumericLiteralToken): NumericLiteralNode {
     current++;
     return { type: 'NumericLiteral', value: token.value }
+  }
+
+  function parseBinaryExpression(token: NumericLiteralToken, next: PlusToken | MinusToken): BinaryExpressionNode {
+    const left = parseNumericLiteral(token);
+
+    const operator = next;
+    current++;
+
+    const right = parse();
+    return { type: 'BinaryExpression', left, operator, right };
   }
 
   while (current < tokens.length) {
