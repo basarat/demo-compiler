@@ -39,7 +39,7 @@ export function tokenizer(input: string): Token[] {
         value += char;
         char = input[++cursorPos]!;
       }
-      tokens.push({ type: 'NumericLiteral', value: +value });
+      tokens.push({ type: 'NumericLiteral', value });
       continue;
     }
 

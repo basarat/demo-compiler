@@ -7,7 +7,7 @@ Object {
       "argument": Object {
         "left": Object {
           "type": "NumericLiteral",
-          "value": 1,
+          "value": "1",
         },
         "operator": Object {
           "type": "PlusToken",
@@ -15,14 +15,14 @@ Object {
         "right": Object {
           "left": Object {
             "type": "NumericLiteral",
-            "value": 3,
+            "value": "3",
           },
           "operator": Object {
             "type": "MinusToken",
           },
           "right": Object {
             "type": "NumericLiteral",
-            "value": 4,
+            "value": "4",
           },
           "type": "BinaryExpression",
         },
