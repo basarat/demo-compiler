@@ -28,6 +28,16 @@ export function parser(tokens: Token[]): Program {
     throw new SyntaxError(`Unknown Token: ${token.type}`);
   }
 
+  function parseBinaryExpression(token: NumericLiteralToken, next: AdditiveOperator): BinaryExpressionNode {
+    const left = parseNumericLiteral(token);
+
+    const operator = next;
+    current++;
+
+    const right = parse();
+    return { type: 'BinaryExpression', left, operator, right };
+  }
+
   function parseCallExpression(token: IdentifierToken): CallExpressionNode {
     const identifier = token;
     current++;
@@ -52,18 +62,9 @@ export function parser(tokens: Token[]): Program {
     return { type: 'NumericLiteral', value: token.value }
   }
 
-  function parseBinaryExpression(token: NumericLiteralToken, next: AdditiveOperator): BinaryExpressionNode {
-    const left = parseNumericLiteral(token);
-
-    const operator = next;
-    current++;
-
-    const right = parse();
-    return { type: 'BinaryExpression', left, operator, right };
-  }
-
   while (current < tokens.length) {
     program.body.push(parse());
   }
+
   return program;
 }
