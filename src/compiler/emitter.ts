@@ -2,14 +2,15 @@ import { BinaryExpressionNode, CallExpressionNode, NumericLiteralNode, Program, 
 
 export function emitter(program: Program): string {
   function emit(node: Node): string {
-    if (node.type === 'NumericLiteral') {
-      return emitNumericLiteral(node);
-    } else if (node.type === 'BinaryExpression') {
-      return emitBinaryExpression(node);
-    } else if (node.type === 'CallExpression') {
-      return emitCallExpression(node);
-    } else {
-      throw new SyntaxError('Unknown Node');
+    switch (node.type) {
+      case 'NumericLiteral':
+        return emitNumericLiteral(node);
+      case 'BinaryExpression':
+        return emitBinaryExpression(node);
+      case 'CallExpression':
+        return emitCallExpression(node);
+      default:
+        throw new SyntaxError('Unknown Node');
     }
   }
 
