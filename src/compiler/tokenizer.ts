@@ -1,10 +1,9 @@
 import { Token } from './types';
 
 export function tokenizer(input: string): Token[] {
-  let cursorPos = 0;
-
   const tokens: Token[] = [];
 
+  let cursorPos = 0;
   while (cursorPos < input.length) {
     let char = input[cursorPos]!;
 
