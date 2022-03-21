@@ -13,7 +13,7 @@ export type Token =
   | PlusToken
   | MinusToken
 
-export type AdditiveOperator = PlusToken | MinusToken;
+export type AdditiveOperator = PlusToken | MinusToken
 
 export type NumericLiteralNode = { type: 'NumericLiteral', value: string }
 export type CallExpressionNode = { type: 'CallExpression', identifier: IdentifierToken, argument: Node }
