@@ -28,7 +28,9 @@ async function main() {
   if (run) {
     interpreter(output);
   } else {
-    await fs.writeFile(path.join(path.dirname(fileName), path.basename(fileName) + '.js'), output);
+    const srcFile = path.parse(fileName);
+    const destFile = path.join(srcFile.dir, srcFile.name + '.js');
+    await fs.writeFile(destFile, output);
   }
 }
 

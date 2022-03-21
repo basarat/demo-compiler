@@ -3,3 +3,6 @@
 
 # Node
 node_modules
+
+# Our Output 
+examples/*.js
