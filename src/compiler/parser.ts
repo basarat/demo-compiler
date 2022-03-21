@@ -1,4 +1,8 @@
-import { Token, Node, Program, NumericLiteralToken, IdentifierToken, NumericLiteralNode, CallExpressionNode, BinaryExpressionNode, MinusToken, PlusToken } from './types';
+import {
+  AdditiveOperator, BinaryExpressionNode,
+  CallExpressionNode, IdentifierToken, Node, NumericLiteralNode,
+  NumericLiteralToken, Program, Token
+} from './types';
 
 export function parser(tokens: Token[]): Program {
   const program: Program = { body: [] };
@@ -48,7 +52,7 @@ export function parser(tokens: Token[]): Program {
     return { type: 'NumericLiteral', value: token.value }
   }
 
-  function parseBinaryExpression(token: NumericLiteralToken, next: PlusToken | MinusToken): BinaryExpressionNode {
+  function parseBinaryExpression(token: NumericLiteralToken, next: AdditiveOperator): BinaryExpressionNode {
     const left = parseNumericLiteral(token);
 
     const operator = next;
